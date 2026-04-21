@@ -44,6 +44,21 @@
             key-positions = <11 12 13>;
             bindings = <&tog TVP1>;
         };
+
+        combo_backspace {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <16 17>;
+        };
+
+        combo_word_backspace {
+            bindings = <&kp LA(BACKSPACE)>;
+            key-positions = <16 17 18>;
+        };
+
+        combo_word_delete {
+            bindings = <&kp LA(DEL)>;
+            key-positions = <17 18>;
+        };
     };
 
     macros {
@@ -163,10 +178,10 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-        &sys_reset   &bt BT_CLR  &out OUT_TOG  &trans  &trans    &trans  &kp F7  &kp F8  &kp F9  &kp F12
-        &bootloader  &bt BT_NXT  &trans        &trans  &trans    &trans  &kp F4  &kp F5  &kp F6  &kp F11
-&trans  &trans       &bt BT_PRV  &trans        &trans  &trans    &trans  &kp F1  &kp F2  &kp F3  &kp F10  &trans
-                                 &trans        &trans  &trans    &trans  &trans  &trans
+            &sys_reset   &trans      &out OUT_TOG  &trans  &trans    &trans  &kp F7  &kp F8  &kp F9  &kp F12
+            &bootloader  &bt BT_NXT  &trans        &trans  &trans    &trans  &kp F4  &kp F5  &kp F6  &kp F11
+&bt BT_CLR  &trans       &bt BT_PRV  &trans        &trans  &trans    &trans  &kp F1  &kp F2  &kp F3  &kp F10  &trans
+                                     &trans        &trans  &trans    &trans  &trans  &trans
             >;
         };
 
