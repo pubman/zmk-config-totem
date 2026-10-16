@@ -40,6 +40,25 @@
             tapping-term-ms = <250>;
             bindings = <&kp>, <&kp>;
         };
+
+        // macOS ignores caps lock presses shorter than ~100ms, so hold the tap
+        caps_slow: caps_slow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <100>;
+            bindings = <&macro_tap &kp CAPS>;
+        };
+
+        hyper_caps: hyper_caps {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            quick-tap-ms = <100>;
+            global-quick-tap;
+            flavor = "tap-preferred";
+            tapping-term-ms = <170>;
+            bindings = <&kp>, <&caps_slow>;
+        };
     };
 };
 
@@ -116,7 +135,7 @@
             bindings = <
           &kp Q           &kp W       &kp E        &kp R        &kp T        &kp Y    &kp U        &kp I        &kp O       &kp P
           &mt_cmd LGUI A  &mt LALT S  &mt LCTRL D  &mt LSHFT F  &kp G        &kp H    &mt RSHFT J  &mt RCTRL K  &mt RALT L  &mt_cmd RGUI SEMI
-&mt LS(LC(LA(LGUI))) CAPS  &kp Z          &kp X      &kp C        &kp V        &kp B        &kp N    &kp M        &kp COMMA    &kp DOT     &kp FSLH           &kp SINGLE_QUOTE
+&hyper_caps LS(LC(LA(LGUI))) 0 &kp Z          &kp X      &kp C        &kp V        &kp B        &kp N    &kp M        &kp COMMA    &kp DOT     &kp FSLH           &kp SINGLE_QUOTE
                                       &kp DEL      &lt NAV TAB  &kp SPACE    &kp RET  &lt SYM ESC  &kp BSPC
             >;
         };
