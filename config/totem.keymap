@@ -175,9 +175,9 @@
 
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-            //             ┃     !     ┃     @     ┃     #     ┃     $     ┃     %     ┃   ┃     ˆ     ┃     &     ┃     Ü     ┃     '     ┃     "     ┃
+            //             ┃     !     ┃     @     ┃     #     ┃     $     ┃     %     ┃   ┃     ˆ     ┃     &     ┃     *     ┃     '     ┃     "     ┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-            //             ┃           ┃           ┃    SZ     ┃     £     ┃     *     ┃   ┃   MUTE    ┃           ┃           ┃           ┃           ┃
+            //             ┃           ┃           ┃    SZ     ┃     £     ┃           ┃   ┃   MUTE    ┃           ┃           ┃           ┃           ┃
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
             // ┃           ┃   BRI-    ┃   BRI+    ┃           ┃ SCR4 CLIP ┃  SCR MENU ┃   ┃   VOL-    ┃   VOL+    ┃   LAST    ┃   NEXT    ┃     \     ┃           ┃
             // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -185,8 +185,8 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-        &kp EXCL  &kp AT  &kp HASH   &kp DLLR            &kp PRCNT         &kp CARET     &kp AMPS      &kp RA(U)   &kp SQT     &kp DQT
-        &trans    &trans  &kp RA(S)  &kp RA(N3)          &kp ASTRK         &kp C_MUTE    &kp MINUS     &kp TILDE   &kp PIPE    &kp UNDERSCORE
+        &kp EXCL  &kp AT  &kp HASH   &kp DLLR            &kp PRCNT         &kp CARET     &kp AMPS      &kp ASTRK   &kp SQT     &kp DQT
+        &trans    &trans  &kp RA(S)  &kp RA(N3)          &trans            &kp C_MUTE    &kp MINUS     &kp TILDE   &kp PIPE    &kp UNDERSCORE
 &trans  &kp C_BRI_DN  &kp C_BRI_UP  &trans     &kp LG(LC(LS(N4)))  &kp LG(LS(N5))    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV  &kp C_NEXT  &kp BSLH        &kp GRAVE
                           &trans     &gif                &mo ADJ           &trans        &kp C_PP      &trans
             >;
