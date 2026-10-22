@@ -21,6 +21,10 @@
 #define ADJ  3
 #define TVP1 4
 #define TVP2 5
+#define GAME 6
+
+// Combos hold their keys back until the combo timeout passes, so keep them off GAME
+#define NOT_GAME BASE NAV SYM ADJ TVP1 TVP2
 
 &mt {
     quick-tap-ms = <100>;
@@ -70,27 +74,39 @@
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&kp ESC>;
+            layers = <NOT_GAME>;
         };
 
         combo_tvp {
             timeout-ms = <100>;
             key-positions = <11 12 13>;
             bindings = <&tog TVP1>;
+            layers = <NOT_GAME>;
+        };
+
+        combo_game {
+            timeout-ms = <50>;
+            key-positions = <32 33>;
+            bindings = <&tog GAME>;
+            layers = <BASE>;
         };
 
         combo_backspace {
             bindings = <&kp BACKSPACE>;
             key-positions = <16 17>;
+            layers = <NOT_GAME>;
         };
 
         combo_word_backspace {
             bindings = <&kp LA(BACKSPACE)>;
             key-positions = <16 17 18>;
+            layers = <NOT_GAME>;
         };
 
         combo_word_delete {
             bindings = <&kp LA(DEL)>;
             key-positions = <17 18>;
+            layers = <NOT_GAME>;
         };
     };
 
@@ -267,6 +283,35 @@
         &trans       &kp LS(LEFT)  &kp LC(F17)   &kp LS(RIGHT)  &kp RET        &trans  &kp F4  &kp F5  &kp F6  &kp F11
 &trans  &kp J        &kp LS(C)     &kp LC(F16)   &kp LS(V)      &kp LC(F15)    &trans  &kp F1  &kp F2  &kp F3  &kp F10  &trans
                                    &trans        &kp LC(F12)    &kp LC(F11)    &trans  &trans  &trans
+            >;
+        };
+
+        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+        game_layer {
+            // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+
+            label = "GAME";
+
+            // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+            // No hold-taps or combos here: every key fires the moment it goes down.
+            // WASD sits one column in so the pinky is free for Shift.
+            // On: DEL + TAB thumbs together (combo, BASE only). Off: outer-right bottom key.
+            //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+            //             ┃    TAB    ┃     Q     ┃     W     ┃     E     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃
+            //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+            //             ┃   SHIFT   ┃     A     ┃     S     ┃     D     ┃     F     ┃   ┃     H     ┃     J     ┃     K     ┃     L     ┃     ;     ┃
+            // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+            // ┃    ESC    ┃     1     ┃     2     ┃     3     ┃     4     ┃     5     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃ GAME OFF  ┃
+            // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+            //                                     ┃    F5     ┃   CTRL    ┃    SPC    ┃   ┃   ENTER   ┃           ┃   BSPC    ┃
+            //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+
+            bindings = <
+           &kp TAB    &kp Q   &kp W   &kp E   &kp T      &kp Y    &kp U    &kp I      &kp O    &kp P
+           &kp LSHFT  &kp A   &kp S   &kp D   &kp F      &kp H    &kp J    &kp K      &kp L    &kp SEMI
+&kp ESC    &kp N1     &kp N2  &kp N3  &kp N4  &kp N5     &kp N    &kp M    &kp COMMA  &kp DOT  &kp FSLH  &tog GAME
+                              &kp F5  &kp LCTRL  &kp SPACE    &kp RET  &trans   &kp BSPC
             >;
         };
     };
