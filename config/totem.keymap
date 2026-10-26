@@ -326,9 +326,9 @@
 
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
             // Held from GAME's left middle thumb (TAB position). Left: hotbar 6-0 (0 = Axiom builder-tools slot).
-            // Right: Litematica (plain F13..F18, rebind each in-game; no Alt, Axiom grabs it) and rarer vanilla keys.
+            // Right: Litematica (plain F16..F20: Mac eats F13-F15, Alt opens Axiom menu; Config via the Litematica menu) and rarer vanilla keys.
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-            //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MENU ┃ LITE CFG  ┃ LITE REND ┃ LITE GHOST┃ LITE PLACE┃
+            //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MENU ┃           ┃ LITE REND ┃ LITE GHOST┃ LITE PLACE┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
             //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MATS ┃     /     ┃    F1     ┃    F2     ┃    F3     ┃
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
@@ -338,8 +338,8 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-           &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F14  &kp F15  &kp F16  &kp F17
-           &trans  &trans  &trans  &trans  &trans      &kp F18  &kp FSLH         &kp F1           &kp F2           &kp F3
+           &trans  &trans  &trans  &trans  &trans      &kp F16  &none    &kp F17  &kp F18  &kp F19
+           &trans  &trans  &trans  &trans  &trans      &kp F20  &kp FSLH         &kp F1           &kp F2           &kp F3
 &trans     &kp N6  &kp N7  &kp N8  &kp N9  &kp N0              &kp F5           &kp F11          &none            &none            &none  &none
                            &trans  &trans  &trans      &trans  &trans  &trans
             >;
