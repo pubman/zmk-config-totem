@@ -22,6 +22,7 @@
 #define TVP1 4
 #define TVP2 5
 #define GAME 6
+#define GAMEH 7
 
 // Combos hold their keys back until the combo timeout passes, so keep them off GAME
 #define NOT_GAME BASE NAV SYM ADJ TVP1 TVP2
@@ -88,7 +89,7 @@
             timeout-ms = <50>;
             key-positions = <32 33>;
             bindings = <&tog GAME>;
-            layers = <BASE>;
+            layers = <BASE GAME>;
         };
 
         combo_backspace {
@@ -294,24 +295,53 @@
             label = "GAME";
 
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            // No hold-taps or combos here: every key fires the moment it goes down.
-            // WASD sits one column in so the pinky is free for Shift.
-            // On: DEL + TAB thumbs together (combo, BASE only). Off: outer-right bottom key.
+            // Minecraft + Axiom + Litematica. No hold-taps: every key fires the moment it goes down.
+            // On/off: DEL + TAB thumbs together (combo_game, live on BASE and GAME).
+            // Left = vanilla (WASD, E inv, 1-5 hotbar). Hold left outer thumb for 6-0 (GAMEH).
+            // Right = Axiom one-taps (Ctrl+Z/Y/X/C/V/J/P/F/R, Del, Enter, R-Shift editor, PgUp/Dn nudge).
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-            //             ┃    TAB    ┃     Q     ┃     W     ┃     E     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃
+            //             ┃    ESC    ┃     Q     ┃     W     ┃     E     ┃     T     ┃   ┃   UNDO    ┃   REDO    ┃    CUT    ┃   COPY    ┃   PASTE   ┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-            //             ┃   SHIFT   ┃     A     ┃     S     ┃     D     ┃     F     ┃   ┃     H     ┃     J     ┃     K     ┃     L     ┃     ;     ┃
+            //             ┃   SHIFT   ┃     A     ┃     S     ┃     D     ┃     F     ┃   ┃    DEL    ┃   ENTER   ┃ DUPLICATE ┃ SAVE BLUE ┃ EDITOR(RS)┃
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-            // ┃    ESC    ┃     1     ┃     2     ┃     3     ┃     4     ┃     5     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃ GAME OFF  ┃
+            // ┃    ALT    ┃     1     ┃     2     ┃     3     ┃     4     ┃     5     ┃   ┃ QUICKFILL ┃ QUICKREPL ┃           ┃           ┃           ┃           ┃
             // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-            //                                     ┃    F5     ┃   CTRL    ┃    SPC    ┃   ┃   ENTER   ┃           ┃   BSPC    ┃
+            //                                     ┃ 6-0 (HOLD)┃   CTRL    ┃    SPC    ┃   ┃    TAB    ┃   PG UP   ┃   PG DN   ┃
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-           &kp TAB    &kp Q   &kp W   &kp E   &kp T      &kp Y    &kp U    &kp I      &kp O    &kp P
-           &kp LSHFT  &kp A   &kp S   &kp D   &kp F      &kp H    &kp J    &kp K      &kp L    &kp SEMI
-&kp ESC    &kp N1     &kp N2  &kp N3  &kp N4  &kp N5     &kp N    &kp M    &kp COMMA  &kp DOT  &kp FSLH  &tog GAME
-                              &kp F5  &kp LCTRL  &kp SPACE    &kp RET  &trans   &kp BSPC
+           &kp ESC    &kp Q   &kp W   &kp E   &kp T      &kp LC(Z)    &kp LC(Y)    &kp LC(X)  &kp LC(C)  &kp LC(V)
+           &kp LSHFT  &kp A   &kp S   &kp D   &kp F      &kp DEL      &kp RET      &kp LC(J)  &kp LC(P)  &kp RSHFT
+&kp LALT   &kp N1     &kp N2  &kp N3  &kp N4  &kp N5     &kp LC(F)    &kp LC(R)    &none      &none      &none  &none
+                              &mo GAMEH  &kp LCTRL  &kp SPACE    &kp TAB  &kp PG_UP  &kp PG_DN
+            >;
+        };
+
+        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+        game_hot_layer {
+            // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+
+            label = "GAMEH";
+
+            // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+            // Held from GAME's left outer thumb. Left: hotbar 6-0 (0 = Axiom builder-tools slot).
+            // Right: Litematica (Ctrl+Alt+F13..F18, rebind each in-game) and rarer vanilla keys.
+            //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+            //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MENU ┃ LITE CFG  ┃ LITE REND ┃ LITE GHOST┃ LITE PLACE┃
+            //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+            //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MATS ┃     /     ┃    F1     ┃    F2     ┃    F3     ┃
+            // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+            // ┃           ┃     6     ┃     7     ┃     8     ┃     9     ┃     0     ┃   ┃    F5     ┃    F11    ┃           ┃           ┃           ┃           ┃
+            // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+            //                                     ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃
+            //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+
+            bindings = <
+           &trans  &trans  &trans  &trans  &trans      &kp LC(LA(F13))  &kp LC(LA(F14))  &kp LC(LA(F15))  &kp LC(LA(F16))  &kp LC(LA(F17))
+           &trans  &trans  &trans  &trans  &trans      &kp LC(LA(F18))  &kp FSLH         &kp F1           &kp F2           &kp F3
+&trans     &kp N6  &kp N7  &kp N8  &kp N9  &kp N0              &kp F5           &kp F11          &none            &none            &none  &none
+                           &trans  &trans  &trans      &trans  &trans  &trans
             >;
         };
     };
