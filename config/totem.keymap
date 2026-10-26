@@ -297,7 +297,7 @@
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
             // Minecraft + Axiom + Litematica. No hold-taps: every key fires the moment it goes down.
             // On/off: DEL + TAB thumbs together (combo_game, live on BASE and GAME).
-            // Left = vanilla (WASD, E inv, 1-5 hotbar). Hold left outer thumb for 6-0 (GAMEH).
+            // Left = vanilla (WASD, E inv, 1-5 hotbar). Hold left middle thumb for 6-0 (GAMEH).
             // Right = Axiom one-taps (Ctrl+Z/Y/X/C/V/J/P/F/R, Del, Enter, R-Shift editor, PgUp/Dn nudge).
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
             //             ┃    ESC    ┃     Q     ┃     W     ┃     E     ┃     T     ┃   ┃   UNDO    ┃   REDO    ┃    CUT    ┃   COPY    ┃   PASTE   ┃
@@ -306,14 +306,14 @@
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
             // ┃    ALT    ┃     1     ┃     2     ┃     3     ┃     4     ┃     5     ┃   ┃ QUICKFILL ┃ QUICKREPL ┃           ┃           ┃           ┃           ┃
             // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-            //                                     ┃ 6-0 (HOLD)┃   CTRL    ┃    SPC    ┃   ┃    TAB    ┃   PG UP   ┃   PG DN   ┃
+            //                                     ┃   CTRL    ┃ 6-0 (HOLD)┃    SPC    ┃   ┃    TAB    ┃   PG UP   ┃   PG DN   ┃
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
            &kp ESC    &kp Q   &kp W   &kp E   &kp T      &kp LC(Z)    &kp LC(Y)    &kp LC(X)  &kp LC(C)  &kp LC(V)
            &kp LSHFT  &kp A   &kp S   &kp D   &kp F      &kp DEL      &kp RET      &kp LC(J)  &kp LC(P)  &kp RSHFT
 &kp LALT   &kp N1     &kp N2  &kp N3  &kp N4  &kp N5     &kp LC(F)    &kp LC(R)    &none      &none      &none  &none
-                              &mo GAMEH  &kp LCTRL  &kp SPACE    &kp TAB  &kp PG_UP  &kp PG_DN
+                              &kp LCTRL  &mo GAMEH  &kp SPACE    &kp TAB  &kp PG_UP  &kp PG_DN
             >;
         };
 
@@ -325,8 +325,8 @@
             label = "GAMEH";
 
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            // Held from GAME's left outer thumb. Left: hotbar 6-0 (0 = Axiom builder-tools slot).
-            // Right: Litematica (Ctrl+Alt+F13..F18, rebind each in-game) and rarer vanilla keys.
+            // Held from GAME's left middle thumb (TAB position). Left: hotbar 6-0 (0 = Axiom builder-tools slot).
+            // Right: Litematica (plain F13..F18, rebind each in-game; no Alt, Axiom grabs it) and rarer vanilla keys.
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
             //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MENU ┃ LITE CFG  ┃ LITE REND ┃ LITE GHOST┃ LITE PLACE┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
@@ -338,8 +338,8 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-           &trans  &trans  &trans  &trans  &trans      &kp LC(LA(F13))  &kp LC(LA(F14))  &kp LC(LA(F15))  &kp LC(LA(F16))  &kp LC(LA(F17))
-           &trans  &trans  &trans  &trans  &trans      &kp LC(LA(F18))  &kp FSLH         &kp F1           &kp F2           &kp F3
+           &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F14  &kp F15  &kp F16  &kp F17
+           &trans  &trans  &trans  &trans  &trans      &kp F18  &kp FSLH         &kp F1           &kp F2           &kp F3
 &trans     &kp N6  &kp N7  &kp N8  &kp N9  &kp N0              &kp F5           &kp F11          &none            &none            &none  &none
                            &trans  &trans  &trans      &trans  &trans  &trans
             >;
