@@ -22,10 +22,12 @@
 #define TVP1 4
 #define TVP2 5
 #define GAME 6
-#define GAMEH 7
+#define G_AXIOM 7
+#define G_LITE  8
 
 // Combos hold their keys back until the combo timeout passes, so keep them off GAME
 #define NOT_GAME BASE NAV SYM ADJ TVP1 TVP2
+#define ALL_GAME GAME G_AXIOM G_LITE
 
 &mt {
     quick-tap-ms = <100>;
@@ -85,11 +87,19 @@
             layers = <NOT_GAME>;
         };
 
-        combo_game {
+        combo_game_on {
             timeout-ms = <50>;
             key-positions = <32 33>;
-            bindings = <&tog GAME>;
-            layers = <BASE GAME>;
+            bindings = <&to GAME>;
+            layers = <BASE>;
+        };
+
+        // &to clears the Axiom/Litematica sub-layers too
+        combo_game_off {
+            timeout-ms = <50>;
+            key-positions = <32 33>;
+            bindings = <&to BASE>;
+            layers = <ALL_GAME>;
         };
 
         combo_backspace {
@@ -112,6 +122,21 @@
     };
 
     macros {
+        // Minecraft F3 chords: hold F3, tap the second key
+        f3_b: f3_b {
+            label = "F3_B";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp F3 &macro_tap &kp B &macro_release &kp F3>;
+        };
+
+        f3_g: f3_g {
+            label = "F3_G";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp F3 &macro_tap &kp G &macro_release &kp F3>;
+        };
+
         gif: gif {
             label = "giphy";
             compatible = "zmk,behavior-macro";
@@ -295,44 +320,73 @@
             label = "GAME";
 
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            // Minecraft + Axiom + Litematica. No hold-taps: every key fires the moment it goes down.
-            // On/off: DEL + TAB thumbs together (combo_game, live on BASE and GAME).
-            // Left = vanilla (WASD, E inv, 1-5 hotbar). Hold left middle thumb for 6-0 (GAMEH).
-            // Right = Axiom one-taps (Ctrl+Z/Y/X/C/V/J/P/F/R, Del, Enter, R-Shift editor, PgUp/Dn nudge).
+            // Vanilla Minecraft. No hold-taps: every key fires the moment it goes down.
+            // On: DEL + TAB thumbs together (combo_game_on). Off: left thumbs CTRL + 2nd together (combo_game_off, any game layer).
+            // Left = hotbar 1-5 on top (also C/X + 1-5 = save/load palette); W on home row, A S D on bottom row; Q drop (Ctrl+Q = drop stack), E inv, F swap.
+            // Right = F3 debug / hitboxes / chunk borders, C save + X load hotbar, F1/F2/F5/F11.
+            // Bottom-right "mode row" (same on all three game layers): VANILLA / AXIOM / LITEMATICA.
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-            //             ┃    ESC    ┃     Q     ┃     W     ┃     E     ┃     T     ┃   ┃   UNDO    ┃   REDO    ┃    CUT    ┃   COPY    ┃   PASTE   ┃
+            //             ┃     1     ┃     2     ┃     3     ┃     4     ┃     5     ┃   ┃  F3 DEBUG ┃ F3+B HITBX┃ F3+G CHUNK┃  F1 HUD   ┃ F2 SHOT   ┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-            //             ┃   SHIFT   ┃     A     ┃     S     ┃     D     ┃     F     ┃   ┃    DEL    ┃   ENTER   ┃ DUPLICATE ┃ SAVE BLUE ┃ EDITOR(RS)┃
+            //             ┃    ESC    ┃ Q (DROP)  ┃     W     ┃     E     ┃  T (CHAT) ┃   ┃ C SAVE HB ┃ X LOAD HB ┃           ┃           ┃           ┃
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-            // ┃    ALT    ┃     1     ┃     2     ┃     3     ┃     4     ┃     5     ┃   ┃ QUICKFILL ┃ QUICKREPL ┃           ┃           ┃           ┃           ┃
+            // ┃    ALT    ┃   SHIFT   ┃     A     ┃     S     ┃     D     ┃  F (SWAP) ┃   ┃  F5 VIEW  ┃ F11 FULL  ┃  >VANILLA ┃  >AXIOM   ┃  >LITE    ┃           ┃
             // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-            //                                     ┃   CTRL    ┃ 6-0 (HOLD)┃    SPC    ┃   ┃    TAB    ┃   PG UP   ┃   PG DN   ┃
+            //                                     ┃   CTRL    ┃           ┃    SPC    ┃   ┃    TAB    ┃           ┃           ┃
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-           &kp ESC    &kp Q   &kp W   &kp E   &kp T      &kp LC(Z)    &kp LC(Y)    &kp LC(X)  &kp LC(C)  &kp LC(V)
-           &kp LSHFT  &kp A   &kp S   &kp D   &kp F      &kp DEL      &kp RET      &kp LC(J)  &kp LC(P)  &kp RSHFT
-&kp LALT   &kp N1     &kp N2  &kp N3  &kp N4  &kp N5     &kp LC(F)    &kp LC(R)    &none      &none      &none  &none
-                              &kp LCTRL  &mo GAMEH  &kp SPACE    &kp TAB  &kp PG_UP  &kp PG_DN
+           &kp N1     &kp N2  &kp N3  &kp N4  &kp N5     &kp F3     &f3_b      &f3_g      &kp F1       &kp F2
+           &kp ESC    &kp Q   &kp W   &kp E   &kp T      &kp C      &kp X      &none      &none        &none
+&kp LALT   &kp LSHFT  &kp A   &kp S   &kp D   &kp F      &kp F5     &kp F11    &to GAME   &to G_AXIOM  &to G_LITE  &none
+                              &kp LCTRL  &none  &kp SPACE    &kp TAB  &none  &none
             >;
         };
 
         // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-        game_hot_layer {
+        g_axiom_layer {
             // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 
-            label = "GAMEH";
+            label = "G_AXIOM";
 
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            // Held from GAME's left middle thumb (TAB position). Left: hotbar 6-0 (0 = Axiom builder-tools slot).
-            // Right: Litematica (plain F16..F20: Mac eats F13-F15, Alt opens Axiom menu; Config via the Litematica menu) and rarer vanilla keys.
+            // Axiom on the right hand; left hand falls through to GAME (vanilla). Reached with &to from the mode row.
+            // Axiom one-taps: Ctrl+Z/Y/X/C/V/J/P/F/R, Del, Enter, R-Shift editor, PgUp/Dn nudge, 0 = builder-tools slot.
+            //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+            //             ┃           ┃           ┃           ┃           ┃           ┃   ┃   UNDO    ┃   REDO    ┃    CUT    ┃   COPY    ┃   PASTE   ┃
+            //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+            //             ┃           ┃           ┃           ┃           ┃           ┃   ┃    DEL    ┃   ENTER   ┃ DUPLICATE ┃ SAVE BLUE ┃ EDITOR(RS)┃
+            // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+            // ┃           ┃           ┃           ┃           ┃           ┃           ┃   ┃ QUICKFILL ┃ QUICKREPL ┃  >VANILLA ┃  >AXIOM   ┃  >LITE    ┃     0     ┃
+            // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+            //                                     ┃           ┃           ┃           ┃   ┃    TAB    ┃   PG UP   ┃   PG DN   ┃
+            //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+
+            bindings = <
+           &trans  &trans  &trans  &trans  &trans      &kp LC(Z)    &kp LC(Y)    &kp LC(X)    &kp LC(C)    &kp LC(V)
+           &trans  &trans  &trans  &trans  &trans      &kp DEL      &kp RET      &kp LC(J)    &kp LC(P)    &kp RSHFT
+&trans     &trans  &trans  &trans  &trans  &trans      &kp LC(F)    &kp LC(R)    &to GAME     &to G_AXIOM  &to G_LITE  &kp N0
+                           &trans  &trans  &trans      &kp TAB  &kp PG_UP  &kp PG_DN
+            >;
+        };
+
+        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+        g_lite_layer {
+            // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+
+            label = "G_LITE";
+
+            // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+            // Litematica on the right hand; left hand falls through to GAME (vanilla). Reached with &to from the mode row.
+            // Plain F16..F20: Mac eats F13-F15, Alt opens Axiom menu; Config via the Litematica menu.
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
             //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MENU ┃           ┃ LITE REND ┃ LITE GHOST┃ LITE PLACE┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
             //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MATS ┃     /     ┃    F1     ┃    F2     ┃    F3     ┃
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-            // ┃           ┃     6     ┃     7     ┃     8     ┃     9     ┃     0     ┃   ┃    F5     ┃    F11    ┃           ┃           ┃           ┃           ┃
+            // ┃           ┃           ┃           ┃           ┃           ┃           ┃   ┃    F5     ┃    F11    ┃  >VANILLA ┃  >AXIOM   ┃  >LITE    ┃           ┃
             // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
             //                                     ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -340,7 +394,7 @@
             bindings = <
            &trans  &trans  &trans  &trans  &trans      &kp F16  &none    &kp F17  &kp F18  &kp F19
            &trans  &trans  &trans  &trans  &trans      &kp F20  &kp FSLH         &kp F1           &kp F2           &kp F3
-&trans     &kp N6  &kp N7  &kp N8  &kp N9  &kp N0              &kp F5           &kp F11          &none            &none            &none  &none
+&trans     &trans  &trans  &trans  &trans  &trans      &kp F5           &kp F11          &to GAME     &to G_AXIOM  &to G_LITE  &none
                            &trans  &trans  &trans      &trans  &trans  &trans
             >;
         };
