@@ -322,23 +322,23 @@
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
             // Vanilla Minecraft. No hold-taps: every key fires the moment it goes down.
             // On: DEL + TAB thumbs together (combo_game_on). Off: left thumbs CTRL + 2nd together (combo_game_off, any game layer).
-            // Left = hotbar 1-5 on top (also C/X + 1-5 = save/load palette); W on home row, A S D on bottom row; Q drop (Ctrl+Q = drop stack), E inv, F swap.
+            // Left = hotbar 1-5 on top (also C/X + 1-5 = save/load palette); S W D on home row, A under S on bottom row; Q drop (Ctrl+Q = drop stack), E inv, F swap.
             // Right = F3 debug / hitboxes / chunk borders, C save + X load hotbar, F1/F2/F5/F11.
             // Bottom-right "mode row" (same on all three game layers): VANILLA / AXIOM / LITEMATICA.
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
             //             ┃     1     ┃     2     ┃     3     ┃     4     ┃     5     ┃   ┃  F3 DEBUG ┃ F3+B HITBX┃ F3+G CHUNK┃  F1 HUD   ┃ F2 SHOT   ┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-            //             ┃    ESC    ┃ Q (DROP)  ┃     W     ┃     E     ┃  T (CHAT) ┃   ┃ C SAVE HB ┃ X LOAD HB ┃           ┃           ┃           ┃
+            //             ┃   SHIFT   ┃     S     ┃     W     ┃     D     ┃  F (SWAP) ┃   ┃ C SAVE HB ┃ X LOAD HB ┃           ┃           ┃           ┃
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-            // ┃    ALT    ┃   SHIFT   ┃     A     ┃     S     ┃     D     ┃  F (SWAP) ┃   ┃  F5 VIEW  ┃ F11 FULL  ┃  >VANILLA ┃  >AXIOM   ┃  >LITE    ┃           ┃
+            // ┃    ALT    ┃    ESC    ┃     A     ┃ Q (DROP)  ┃     E     ┃  T (CHAT) ┃   ┃  F5 VIEW  ┃ F11 FULL  ┃  >VANILLA ┃  >AXIOM   ┃  >LITE    ┃           ┃
             // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
             //                                     ┃   CTRL    ┃           ┃    SPC    ┃   ┃    TAB    ┃           ┃           ┃
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
            &kp N1     &kp N2  &kp N3  &kp N4  &kp N5     &kp F3     &f3_b      &f3_g      &kp F1       &kp F2
-           &kp ESC    &kp Q   &kp W   &kp E   &kp T      &kp C      &kp X      &none      &none        &none
-&kp LALT   &kp LSHFT  &kp A   &kp S   &kp D   &kp F      &kp F5     &kp F11    &to GAME   &to G_AXIOM  &to G_LITE  &none
+           &kp LSHFT  &kp S   &kp W   &kp D   &kp F      &kp C      &kp X      &none      &none        &none
+&kp LALT   &kp ESC    &kp A   &kp Q   &kp E   &kp T      &kp F5     &kp F11    &to GAME   &to G_AXIOM  &to G_LITE  &none
                               &kp LCTRL  &none  &kp SPACE    &kp TAB  &none  &none
             >;
         };
