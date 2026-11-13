@@ -381,8 +381,9 @@
             // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
             // Litematica on the right hand; left hand falls through to GAME (vanilla). Reached with &to from the mode row.
             // Plain F16..F20: Mac eats F13-F15, Alt opens Axiom menu; Config via the Litematica menu.
+            // F21 = MiniHUD light-level (mob spawn) overlay.
             //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-            //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MENU ┃           ┃ LITE REND ┃ LITE GHOST┃ LITE PLACE┃
+            //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MENU ┃ SPAWN OVL ┃ LITE REND ┃ LITE GHOST┃ LITE PLACE┃
             //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
             //             ┃           ┃           ┃           ┃           ┃           ┃   ┃ LITE MATS ┃     /     ┃    F1     ┃    F2     ┃    F3     ┃
             // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
@@ -392,7 +393,7 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-           &trans  &trans  &trans  &trans  &trans      &kp F16  &none    &kp F17  &kp F18  &kp F19
+           &trans  &trans  &trans  &trans  &trans      &kp F16  &kp F21  &kp F17  &kp F18  &kp F19
            &trans  &trans  &trans  &trans  &trans      &kp F20  &kp FSLH         &kp F1           &kp F2           &kp F3
 &trans     &trans  &trans  &trans  &trans  &trans      &kp F5           &kp F11          &to GAME     &to G_AXIOM  &to G_LITE  &none
                            &trans  &trans  &trans      &trans  &trans  &trans
